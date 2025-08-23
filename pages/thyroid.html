@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <style>
+        p {
+            font-size: 13px;
+        }
+
+        body {
+            font-family: 'Poppins';
+            font-size: 15px;
+        }
+
+
+        .condition-card {
+            background-color: #00796B;
+            /* Teal background */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .condition-card img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        .condition-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .condition-card h6 {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .highlight-green {
+            color: #046c4e;
+            /* Dark green */
+            font-weight: 700;
+        }
+
+        .highlight-orange {
+            color: #f7941d;
+            /* Orange */
+            font-weight: 700;
+        }
+
+        .book-btn {
+            background-color: #046c4e;
+            color: white;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .book-btn:hover {
+            background-color: #034d36;
+            color: white;
+        }
+
+        .image-border {
+            border-right: 5px solid #046c4e;
+            border-bottom: 5px solid #f7941d;
+            display: inline-block;
+            padding: 0;
+        }
+
+        .image-border img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .diabetes-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            height: 100%;
+        }
+
+        .diabetes-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .type1 {
+            border-top: 4px solid #0d6efd;
+        }
+
+        .type2 {
+            border-top: 4px solid #dc3545;
+        }
+
+        .gestational {
+            border-top: 4px solid #ffc107;
+        }
+
+        .card-title {
+            font-weight: 600;
+        }
+
+        .section-bg {
+            background-color: #e8f3ef;
+            /* Light greenish background */
+            padding: 50px 20px;
+            border-radius: 8px;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: #1b4332;
+            /* Dark green */
+        }
+
+        .section-title span {
+            color: #f4a300;
+            /* Orange for "Diabetes?" */
+        }
+
+        .custom-list {
+            margin-top: 15px;
+        }
+
+        .custom-list li {
+            margin-bottom: 10px;
+        }
+
+        .product-card {
+            border: none;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            max-height: 220px;
+            object-fit: contain;
+        }
+
+        .save-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #d4f5d0;
+            color: #1c8b2e;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .price {
+            font-weight: 600;
+            font-size: 18px;
+            color: #000;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 16px;
+            margin-left: 5px;
+        }
+
+        .card-header-custom {
+            background-color: #123d2f;
+            color: white;
+        }
+
+        .clinic-image {
+            max-width: 100%;
+            height: auto;
+            padding: 20px;
+        }
+
+        .book-appointment-btn {
+            border-color: #ff9900;
+            color: #ff9900;
+        }
+
+        .book-appointment-btn:hover {
+            background-color: #ff9900;
+            color: white;
+        }
+
+        .title-text {
+            color: #ff9900;
+        }
+
+        .carousel {
+            margin-top: -6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-div row bg-success text-white p-2 position-fixed top-0 start-0 z-3">
+        <div class="col d-flex gap-2 justify-content-start">
+            <div class="left-side d-flex gap-1 gap-lg-2">
+                <span role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+                    </svg></span>
+                <span role="button">080-69043800</span>
+            </div>
+
+        </div>
+        <div class="col d-flex justify-content-center">
+            <div class="center d-flex justify-content-center gap-4 text-dark">
+                <span role="button" class="align-items-center">
+                    <img src="../assets/images/logo.png" alt="">
+                </span>
+            </div>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <div class="right-side d-flex gap-2 gap-lg-4">
+                <span role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-facebook" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                    </svg></span>
+                <span role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-youtube" viewBox="0 0 16 16">
+                        <path
+                            d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z" />
+                    </svg></span>
+                <span role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-linkedin" viewBox="0 0 16 16">
+                        <path
+                            d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+                    </svg></span>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mt-5">
+        <div class="container-fluid p-3">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./pages/about.html">About Us</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Treatments
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./pages/kidney.html">Kidney</a></li>
+                            <!-- Liver with right side submenu -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Liver</a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">Fatty Liver</a></li>
+                                    <li><a class="dropdown-item" href="#">Cirrhosis</a></li>
+                                    <li><a class="dropdown-item" href="#">Hepatitis</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Diabeties</a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">Fatty Liver</a></li>
+                                    <li><a class="dropdown-item" href="#">Cirrhosis</a></li>
+                                    <li><a class="dropdown-item" href="#">Hepatitis</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Heart</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">View all treatments</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Our products</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-success">Book doctor appointment</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact us</a>
+                    </li>
+                </ul>
+
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search your keyword..."
+                        aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../assets/images/image-1.jpeg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../assets/images/image-2.jpeg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../assets/images/slider-1.jpeg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon   p-4 rounded-circle" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon   p-4 rounded-circle" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- <div class="container">
+
+        <h1 class="text-center mb-5">Conditions we treat</h1>
+        <div class="row g-4 mt-4">
+
+   
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="kidney-icon.png" alt="Kidney Disorders">
+                    <h6>Kidney Disorders</h6>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="paralysis-icon.png" alt="Paralysis">
+                    <h6>Paralysis</h6>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="skin-icon.png" alt="Skin Disorders">
+                    <h6>Skin Disorders</h6>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="male-infertility-icon.png" alt="Male Infertility">
+                    <h6>Male Infertility</h6>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="parkinsons-icon.png" alt="Parkinson's">
+                    <h6>Parkinson's</h6>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="liver-icon.png" alt="Liver Disorders">
+                    <h6>Liver Disorders</h6>
+                </div>
+            </div>
+
+         
+
+        </div>
+        <div class="row g-4 mt-4">
+
+        
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="kidney-icon.png" alt="Kidney Disorders">
+                    <h6>Kidney Disorders</h6>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="paralysis-icon.png" alt="Paralysis">
+                    <h6>Paralysis</h6>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="skin-icon.png" alt="Skin Disorders">
+                    <h6>Skin Disorders</h6>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="male-infertility-icon.png" alt="Male Infertility">
+                    <h6>Male Infertility</h6>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="parkinsons-icon.png" alt="Parkinson's">
+                    <h6>Parkinson's</h6>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="condition-card">
+                    <img src="liver-icon.png" alt="Liver Disorders">
+                    <h6>Liver Disorders</h6>
+                </div>
+            </div>
+
+         
+        </div>
+    </div> -->
+
+    <div class="container py-5">
+        <div class="row align-items-center">
+
+            <!-- Left Content -->
+            <div class="col-md-7">
+                <h2>
+                    <span class="highlight-green">What Is</span>
+                    <span class="highlight-orange">Thyroid?</span>
+                </h2>
+                <p>
+                    Thyroid is a condition brought on by elevated blood glucose levels, sometimes referred to as
+                    glucose
+                    levels.
+                    The pancreas secretes the hormone insulin, which facilitates the uptake of glucose by your cells for
+                    use
+                    as fuel.
+                    When you have Thyroid, your body either produces insufficient amounts of insulin or doesn't use it
+                    correctly.
+                    After that, glucose remains in your circulation and does not enter your cells.
+                </p>
+                <p>
+                    The ayurvedic management of Thyroid aids in the treatment of disorder from the core.
+                    Thyroid is also associated with increased risk of heart, kidney, and eye diseases.
+                </p>
+                <a href="#" class="book-btn">Book Consultation</a>
+            </div>
+
+            <!-- Right Image -->
+            <div class="col-md-5 text-center mt-4">
+                <div class="image-border">
+                    <img src="https://via.placeholder.com/400x250" alt="Doctor checking diabetes">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <h1 class="text-center mb-5">Symptoms of Thyroid</h1>
+
+        <div class="row">
+            <!-- Type 1 Diabetes Card -->
+            <div class="col-md-4">
+                <div class="card diabetes-card type1">
+                    <div class="card-body">
+                        <h2 class="card-title text-primary">Type 1 Thyroid</h2>
+                        <p class="card-text">
+                            The body mistakenly attacks itself is thought to be the aetiology of type 1 Thyroid.
+                            Your body's production of insulin is stopped by this reaction. Type 1 Thyroid symptoms
+                            frequently appear suddenly. Typically, it is discovered in kids, teenagers, and young
+                            adults.
+                        </p>
+                        <div class="text-center mt-3">
+                            <span class="badge bg-primary">Autoimmune</span>
+                            <span class="badge bg-info text-dark">Juvenile Onset</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Type 2 Diabetes Card -->
+            <div class="col-md-4">
+                <div class="card diabetes-card type2">
+                    <div class="card-body">
+                        <h2 class="card-title text-danger">Type 2 Thyroid</h2>
+                        <p class="card-text">
+                            The human body struggles to properly utilise insulin in type 2 Thyroid, making it difficult
+                            to maintain normal blood sugar levels. The majority of diabetics (90-95%) are type 2. It
+                            takes
+                            years to develop, and adults are typically diagnosed with it.
+                        </p>
+                        <div class="text-center mt-3">
+                            <span class="badge bg-danger">Most Common</span>
+                            <span class="badge bg-warning text-dark">Adult Onset</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gestational Diabetes Card -->
+            <div class="col-md-4">
+                <div class="card diabetes-card gestational">
+                    <div class="card-body">
+                        <h2 class="card-title text-warning">Gestational Thyroid</h2>
+                        <p class="card-text">
+                            Women who have never had Thyroid before get the condition during pregnancy. If you have
+                            gestational Thyroid, your unborn child may be more susceptible to health issues. After
+                            your baby is born, gestational Thyroid typically disappears.
+                        </p>
+                        <div class="text-center mt-3">
+                            <span class="badge bg-warning text-dark">Pregnancy Related</span>
+                            <span class="badge bg-success">Temporary</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="section-bg text-center">
+            <h3 class="section-title">
+                What Causes <span>Thyroid?</span>
+            </h3>
+            <p class="mt-3 text-muted">
+                The causes for Thyroid are many. Based on their diagnosis, the best ayurvedic medicine for Thyroid is
+                decided.
+                The ayurvedic specialists will guide you for the best course of treatment.
+            </p>
+            <ul class="text-start custom-list mx-auto" style="max-width: 800px;">
+                <li>It is believed that an immunological response, that is, the body unintentionally attacking itself is
+                    the origin of type 1 Thyroid. In addition to that, family history and age also play a crucial role.
+                </li>
+                <li>Being overweight or dealing with some lifestyle disorders like PCOD can possibly cause the
+                    development of Thyroid in the body.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row g-4">
+            <h2>Our solution for Thyroid</h2>
+            <!-- Product 1 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card product-card position-relative h-100">
+                    <span class="save-badge">Save ₹5</span>
+                    <img src="https://via.placeholder.com/250x220" class="card-img-top product-img" alt="Liver Juice">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">Liver Re-Live Juice</h6>
+                        <p class="price">From ₹495 <span class="old-price">₹500</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card product-card position-relative h-100">
+                    <span class="save-badge">Save ₹10</span>
+                    <img src="https://via.placeholder.com/250x220" class="card-img-top product-img"
+                        alt="Digestive Juice">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">Digestive Care Juice</h6>
+                        <p class="price">From ₹440 <span class="old-price">₹450</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card product-card position-relative h-100">
+                    <span class="save-badge">Save ₹10</span>
+                    <img src="https://via.placeholder.com/250x220" class="card-img-top product-img"
+                        alt="Bhumi Amla Juice">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">Bhumi Amla Juice</h6>
+                        <p class="price">From ₹500 <span class="old-price">₹510</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card product-card position-relative h-100">
+                    <span class="save-badge">Save ₹10</span>
+                    <img src="https://via.placeholder.com/250x220" class="card-img-top product-img" alt="IBS Juice">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">IBS Care Juice</h6>
+                        <p class="price">From ₹570 <span class="old-price">₹580</span></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row row-md-12 mt-4 py-4">
+            <h3><strong>User success stories</strong></h3>
+            <!-- First Video -->
+
+            <div class="col-12 col-md-6">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/9ZjTcNZyIlg" title="YouTube video" allowfullscreen>
+                    </iframe>
+                </div>
+                <p><strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio error doloremque ducimus
+                        consequuntur tenetur vel nulla id itaque dignissimos culpa!</strong></p>
+            </div>
+
+            <!-- Second Video -->
+            <div class="col-12 col-md-6 ">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/4s0w8um-UBQ" title="YouTube video" allowfullscreen>
+                    </iframe>
+                </div>
+                <p><strong>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem obcaecati ea reiciendis
+                        accusamus.
+                        Temporibus itaque amet, sint rerum qui repellat.</strong></p>
+            </div>
+
+        </div>
+    </div>
+    <div class="container my-5">
+        <h2 class="text-center mb-5">
+            Our <span class="title-text">Clinics</span></h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+
+            <div class="col d-flex align-items-stretch">
+                <div class="card shadow-sm w-100">
+                    <div class="card-header card-header-custom text-center">
+                        <h5 class="mb-0"><i class="bi bi-geo-alt-fill"></i> Patna</h5>
+                    </div>
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <img src="https://via.placeholder.com/150" class="img-fluid clinic-image" alt="Patna landmark">
+                        <a href="#" class="btn btn-outline-warning mt-3 book-appointment-btn">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col d-flex align-items-stretch">
+                <div class="card shadow-sm w-100">
+                    <div class="card-header card-header-custom text-center">
+                        <h5 class="mb-0"><i class="bi bi-geo-alt-fill"></i> Lucknow</h5>
+                    </div>
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <img src="https://via.placeholder.com/150" class="img-fluid clinic-image"
+                            alt="Lucknow landmark">
+                        <a href="#" class="btn btn-outline-warning mt-3 book-appointment-btn">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col d-flex align-items-stretch">
+                <div class="card shadow-sm w-100">
+                    <div class="card-header card-header-custom text-center">
+                        <h5 class="mb-0"><i class="bi bi-geo-alt-fill"></i> Bangalore</h5>
+                    </div>
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <img src="https://via.placeholder.com/150" class="img-fluid clinic-image"
+                            alt="Bangalore landmark">
+                        <a href="#" class="btn btn-outline-warning mt-3 book-appointment-btn">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col d-flex align-items-stretch">
+                <div class="card shadow-sm w-100">
+                    <div class="card-header card-header-custom text-center">
+                        <h5 class="mb-0"><i class="bi bi-geo-alt-fill"></i> Noida</h5>
+                    </div>
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <img src="https://via.placeholder.com/150" class="img-fluid clinic-image" alt="Noida landmark">
+                        <a href="#" class="btn btn-outline-warning mt-3 book-appointment-btn">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center mb-4">
+            <h5 class="text-success fw-bold">Follow Us On Social Media</h5>
+            <p>Come, be a part of our journey</p>
+            <div>
+                <a href="#"><img src="https://img.icons8.com/color/48/instagram-new.png" alt="Instagram"></a>
+                <a href="#"><img src="https://img.icons8.com/color/48/facebook.png" alt="Facebook"></a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row text-start">
+
+                <div class="col-md-4 mb-3">
+                    <div class="footer-title">INFORMATION</div>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-dark">About Us</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Cancellation Policy</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">General Terms & Conditions</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Grievance Redressal Policy</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Return/Refund Policy</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Shipping Policy</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Blogs</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Contact Us</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Caution Notice</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">FAQ</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Privacy Policy</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Site Map</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+                    <div class="footer-title">CONTACT US</div>
+                    <p><strong>Patanjali Ayurved Limited</strong><br>
+                        Haridwar, Uttarakhand - 249405</p>
+                    <p><i class="bi bi-telephone"></i> Toll Free Number: 1800-571-1751, 01334-610111</p>
+                    <p><i class="bi bi-clock"></i> Timing: Mon to Sat 6 am to 8 pm</p>
+                    <p><i class="bi bi-envelope"></i> customercare@orderme.co.in</p>
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+                    <div class="footer-title">Subscribe Our Newsletter</div>
+                    <form class="d-flex mb-3">
+                        <input type="email" class="form-control me-2" placeholder="Enter your email id">
+                        <button class="btn btn-success">Send</button>
+                    </form>
+
+                    <div class="footer-title">Follow on Social Media</div>
+                    <div class="social-icons mb-3">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-pinterest"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+
+                    <div class="footer-title">Download the Apps</div>
+                    <div class="app-badges">
+                        <a href="#"><img
+                                src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29_logo.png"
+                                alt="App Store"></a>
+                        <a href="#"><img
+                                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                                alt="Google Play"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
