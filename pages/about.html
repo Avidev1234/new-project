@@ -863,9 +863,19 @@
         document.addEventListener("click", function () {
             document.querySelectorAll(".mega-menu ul").forEach(ul => ul.style.display = "none");
         });
+
+         document.addEventListener("DOMContentLoaded", function () {
+            const toggleBtn = document.querySelector(".search-toggle");
+            const searchForm = document.querySelector(".search-form");
+
+            toggleBtn.addEventListener("click", function () {
+                searchForm.classList.toggle("show");
+            });
+        });
     </script>
 
 </body>
 
 
 </html>
+
