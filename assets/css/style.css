@@ -1,8 +1,95 @@
-.main-div {
-    width: 101.8%;
-    align-items: center;
+ 
 
-}
+    * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+
+
+     
+
+        .rounded p {
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 6px;
+            margin-bottom: 0;
+        }
+
+        .fixed-box {
+            width: 120px;
+            /* fixed width */
+            height: 140px;
+            /* fixed height */
+            text-align: center;
+        }
+
+        .fixed-box img {
+            max-width: 60px;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        .fixed-box p {
+            font-size: 12px;
+            margin: 5px 0 0;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+
+        /* Optional: add arrow indicator for submenu */
+        .dropdown-submenu>a::after {
+            /* content: "▶"; */
+            float: right;
+        }
+
+        .navbar {
+            margin-top: 45px !important;
+        }
+
+        .carousel {
+            margin-top: -8px !important;
+        }
+
+        .search-form {
+            max-width: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .search-form.show {
+            max-width: 250px;
+            /* Adjust width as needed */
+            opacity: 1;
+        }
+
+        .search-form input {
+            width: 100%;
+        }
+
+        .mega-menu h5 {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .mega-menu h5+ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            background: #fff;
+        }
+
+        .mega-menu h5:hover+ul,
+        .mega-menu h5+ul:hover {
+            display: block;
+        }
+
 
 form button {
     font-size: 15px;
@@ -12,13 +99,35 @@ form button {
 .navbar {
     margin-top: 45px !important;
 }
+
+@media (min-width: 1440px) {
+    .navbar .mega-menu {
+        position: absolute;
+        left: 80%;
+        transform: translateX(-50%);
+        width: 100%;
+        /* adjust width as you like */
+        max-width: 1800px;
+
+        /* prevents it from being too wide */
+    }
+}
+
+@media (min-width: 320px) and (max-width:1024px) {
+    .navbar .mega-menu {
+        position: absolute;
+        /* left: 50%; */
+        transform: translateX(-50%);
+        width: 100%;
+        /* adjust width as you like */
+        max-width: fit-content;
+        /* prevents it from being too wide */
+    }
+}
+
 .navbar .mega-menu {
-    width: 600px; /* Adjust the width as needed */
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute; /* Needed for positioning */
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 2000px;
+    position: absolute;
 }
 
 /* Ensure the mega menu is visible */
@@ -28,12 +137,25 @@ form button {
 
 /* Optional: Style the list headings */
 .navbar .mega-menu h5 {
-    font-size: 1rem;
-    color: #198754; /* Or your brand color */
+    font-size: 14px;
+    color: #198754;
+    /* border-bottom: 2px solid #198754; */
+    /* Or your brand color */
     margin-bottom: 10px;
     font-weight: bold;
     text-transform: uppercase;
 }
+
+.mega-menu h5 {
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.mega-menu h5::after {
+    content: " ▼";
+    font-size: 12px;
+}
+
 
 
 /* Optional: Style the links */
@@ -52,21 +174,53 @@ form button {
     }
 }
 
+.mega-menu .col-12,
+.mega-menu .col-sm-6,
+.mega-menu .col-md-4,
+.mega-menu .col-lg-2 {
+    position: relative;
+    /* make each column a positioning context */
+}
+
+.mega-menu h5 {
+    cursor: pointer;
+}
+
+.mega-menu ul {
+    display: none;
+    /* hidden initially */
+    position: absolute;
+    top: 100%;
+    /* appear below its own h5 */
+    left: 0;
+    /* aligned to left of the column */
+    background: #fff;
+    padding: 10px;
+    margin: 0;
+    list-style: none;
+    min-width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.mega-menu h5:hover+ul,
+.mega-menu ul:hover {
+    display: block;
+}
+
 
 .center img {
     width: 38px;
 }
 
-.collapse ul>li {
-    font-size: 15px;
+.main-div {
+    width: 101%;
+    align-items: center;
+
 }
 
-
-@media (min-width: 768px) {
-    .main-div {
-        width: 102%;
-        /* overflow: hidden; */
-    }
+.collapse ul>li {
+    font-size: 15px;
 }
 
 @media (min-width: 320px) {
@@ -75,6 +229,15 @@ form button {
         /* overflow: hidden; */
     }
 }
+
+@media (min-width: 768px) {
+    .main-div {
+        width: 102%;
+        /* overflow: hidden; */
+    }
+}
+
+
 
 @media (min-width: 1880px) {
     .main-div {
@@ -401,29 +564,33 @@ img {
     display: none;
 }
 
- .about-section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-    .about-img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-    .about-text h2 {
-      font-weight: 600;
-    }
-    .btn-custom {
-      background-color: #00a060;
-      color: #fff;
-      border-radius: 50px;
-      padding: 10px 20px;
-      border: none;
-    }
-    .btn-custom:hover {
-      background-color: #008c52;
-      color: #fff;
-    }
+.about-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.about-img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.about-text h2 {
+    font-weight: 600;
+}
+
+.btn-custom {
+    background-color: #00a060;
+    color: #fff;
+    border-radius: 50px;
+    padding: 10px 20px;
+    border: none;
+}
+
+.btn-custom:hover {
+    background-color: #008c52;
+    color: #fff;
+}
 
 
 footer {
@@ -532,11 +699,11 @@ footer {
     font-weight: 500;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,700');
+/* @import url('https://fonts.googleapis.com/css?family=Raleway:400,500,700'); */
 
-.teams {
+/* .teams {
     font-family: 'Raleway', sans-serif;
-}
+} */
 
 .teams .shadow-effect {
     background: #fff;
