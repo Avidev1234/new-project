@@ -38,11 +38,6 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
     <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
-
         p,
         span {
             font-size: 15px;
@@ -58,60 +53,8 @@
             font-size: 20px;
         }
 
-        .rounded p {
-            font-size: 12px;
-            font-weight: bold;
-            margin-top: 6px;
-            margin-bottom: 0;
-        }
-
-        .fixed-box {
-            width: 120px;
-            /* fixed width */
-            height: 140px;
-            /* fixed height */
-            text-align: center;
-        }
-
-        .fixed-box img {
-            max-width: 60px;
-            max-height: 60px;
-            object-fit: contain;
-        }
-
-        .fixed-box p {
-            font-size: 12px;
-            margin: 5px 0 0;
-        }
-
-        .dropdown-submenu {
-            position: relative;
-        }
-
-        .dropdown-submenu>.dropdown-menu {
-            top: 0;
-            left: 100%;
-            margin-left: 0.1rem;
-            margin-right: 0.1rem;
-        }
-
-        /* Show submenu on hover */
-        .dropdown-submenu:hover>.dropdown-menu {
-            display: block;
-        }
-
-        /* Optional: add arrow indicator for submenu */
-        .dropdown-submenu>a::after {
-            /* content: "▶"; */
-            float: right;
-        }
-
-        .navbar {
-            margin-top: 45px !important;
-        }
-
-        .carousel {
-            margin-top: -8px !important;
+        h5 {
+            font-size: small;
         }
     </style>
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
@@ -1631,6 +1574,14 @@
                 }
             }
         });
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleBtn = document.querySelector(".search-toggle");
+            const searchForm = document.querySelector(".search-form");
+
+            toggleBtn.addEventListener("click", function () {
+                searchForm.classList.toggle("show");
+            });
+        });
 
         document.querySelectorAll(".mega-menu h5").forEach(h5 => {
             h5.addEventListener("click", function (e) {
@@ -1651,9 +1602,8 @@
         document.addEventListener("click", function () {
             document.querySelectorAll(".mega-menu ul").forEach(ul => ul.style.display = "none");
         });
+
     </script>
 </body>
 
 </html>
-
-
